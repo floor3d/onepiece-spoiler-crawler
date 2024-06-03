@@ -5,7 +5,7 @@
 chapter_number=$(<"/home/evand/onepiece-spoiler-crawler/new-chapter")
 scans_chapter=$(<"/home/evand/onepiece-spoiler-crawler/scans-chapter")
 result=$(curl -L https://www.reddit.com/r/OnePiece/ | grep $chapter_number | grep -i "spoiler" | grep -i "article")
-scans_result=$(curl -L https://tcb-backup.bihar-mirchi.com/ | grep "One Piece" | grep "Chapter $chapter_number")
+scans_result=$(curl -L https://www.reddit.com/r/OnePiece/ | grep "One Piece: Chapter $chapter_number") 
 
 if [ "$result" != "" ]; then
   echo $((chapter_number + 1)) > /home/evand/onepiece-spoiler-crawler/new-chapter
