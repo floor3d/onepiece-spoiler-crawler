@@ -5,13 +5,13 @@
 chapter_number=$(<"/home/evand/onepiece-spoiler-crawler/new-chapter")
 scans_chapter=$(<"/home/evand/onepiece-spoiler-crawler/scans-chapter")
 result=$(curl -L https://www.reddit.com/r/OnePiece/ | grep $chapter_number | grep -i "spoiler" | grep -i "article")
-scans_result=$(curl -L https://www.reddit.com/r/OnePiece/ | grep "One Piece: Chapter $chapter_number") 
+scans_result=$(curl -L https://www.reddit.com/r/OnePiece/ | grep "One Piece: Chapter $scans_chapter<")
 
 if [ "$result" != "" ]; then
-  echo $((chapter_number + 1)) > /home/evand/onepiece-spoiler-crawler/new-chapter
+  echo $((chapter_number + 1)) > [HOMEDIR]/onepiece-spoiler-crawler/new-chapter
   # Email variables
   recipient=[]
-  subject="JUAN PIECE SPOILERS"
+  subject="ONE PIECE SPOILERS"
   body="Them spoilers be out. check https://www.reddit.com/r/OnePiece/"
 
   # Send the email
@@ -19,11 +19,11 @@ if [ "$result" != "" ]; then
 fi
 
 if [ "$scans_result" != "" ]; then
-  echo $((scans_chapter + 1)) > /home/evand/onepiece-spoiler-crawler/scans-chapter
+  echo $((scans_chapter + 1)) > [HOMEDIR]/onepiece-spoiler-crawler/scans-chapter
   # Email variables
   recipient=[]
-  subject="JUAN PIECE SCANS"
-  body="Them scans be out. check https://tcb-backup.bihar-mirchi.com/ "
+  subject="ONE PIECE SCANS"
+  body="Them scans be out, I think. Check TCBScans or One Piece reddit..!"
 
   # Send the email
   echo -e "Subject: $subject\n\n$body" | msmtp --debug --from=[] -t []
