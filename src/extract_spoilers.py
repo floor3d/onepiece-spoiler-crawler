@@ -33,8 +33,8 @@ def crawl_spoiler_post(link):
 
 
 def main():
-    with open("new-chapter", "r") as nc:
-        with open("scans-chapter", "r") as sc:
+    with open("/home/[YOU]/onepiece-spoiler-crawler/new-chapter", "r") as nc:
+        with open("/home/[YOU]/onepiece-spoiler-crawler/scans-chapter", "r") as sc:
             if sc.read() == nc.read():
                 print("dont give a damn! EXITING!")
                 return
@@ -50,6 +50,15 @@ def main():
             link = "https://www.reddit.com" + article.find('a').get("href")
             print(link)
             crawl_spoiler_post(link)
+            return
+    for h2 in soup.find_all('h2'):
+        h2_text = h2.get_text().strip()
+        if ("one piece" in h2_text.lower() or "chapter" in h2_text.lower()) and "spoiler" in h2_text.lower():
+            print(h2_text)
+            link = "https://www.reddit.com" + h2.parent.parent.get("href")
+            print(link)
+            crawl_spoiler_post(link)
+            return
 
 
 main()
