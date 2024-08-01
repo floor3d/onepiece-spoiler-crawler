@@ -24,7 +24,7 @@ def crawl_spoiler_post(link):
         if len(current_spoilers) < len(post_text):
             print("[!] Updating current spoilers!")
             write_me = True
-            f.truncate()
+            f.truncate(0)
             f.write(post_text)
         else:
             print("[-] No updates.")
